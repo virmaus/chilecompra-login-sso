@@ -7,7 +7,6 @@
       <div id="kc-form-wrapper" <#if realm.password && social.providers??>class="${properties.kcFormSocialAccountContentClass!} ${properties.kcFormSocialAccountClass!}"</#if>>
         <#if realm.password>
 
-            <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
 
                 <div id="tabs" style="display: block; width: 100%; margin: 0px;">
                     <ul class="resp-tabs-list tabs">
@@ -34,6 +33,7 @@
 
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <h2 class="resp-accordion tabs" role="tab" aria-controls="tabs_tab_item-1">RUT Persona</h2>
+                    <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
 
                         <div class="resp-tab-content tabs" aria-labelledby="tabs_tab_item-1">
                             <div class="form-center form-wrap">
@@ -57,12 +57,20 @@
 
                                 </div>
                                 <div class="alert down alerta-adv-pequeno alerta" style="display:none;">
-                                </div>                           
-                        </div>
-                        
-                        </div>
+                                </div>
+                            <div id="kc-form-buttons" class="${properties.kcFormGroupClass!}">
+                                <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
+                                <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
+                            </div>
+                         </div>
+                        </form>
+                    </div>
+
+
                         <h2 class="resp-accordion tabs" role="tab" aria-controls="tabs_tab_item-2">Extranjero</h2><div class="resp-tab-content tabs" aria-labelledby="tabs_tab_item-2">
-                            <div class="form-center form-wrap">
+                            <form id="kc-form-login" onsubmit="login.disabled = true; return true;" action="${url.loginAction}" method="post">
+
+                             <div class="form-center form-wrap">
 
                                 <div class="input-wrap">
                                     <#if usernameEditDisabled??>
@@ -78,13 +86,23 @@
                                 </div>
                                 <div class="alert down alerta-adv-pequeno alerta" style="display:none">
                                 </div>
-
+                            <div id="kc-form-buttons" class="${properties.kcFormGroupClass!}">
+                                <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
+                                <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
                             </div>
+
+                             </div>
+                            
                         </div>
 
+                            <div id="kc-form-buttons" class="${properties.kcFormGroupClass!}">
+                                <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
+                                <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
+                            </div>
+                    </form>
                         
+                        </div>
                     </div>
-                </div>
         
 
                 <div class="${properties.kcFormGroupClass!} ${properties.kcFormSettingClass!}">
@@ -100,21 +118,15 @@
                                 </label>
                             </div>
                         </#if>
-                        </div>
+                    </div>
                         <div class="${properties.kcFormOptionsWrapperClass!}">
                             <#if realm.resetPasswordAllowed>
                                 <span><a tabindex="5" href="${url.loginResetCredentialsUrl}">${msg("doForgotPassword")}</a></span>
                             </#if>
                         </div>
-
                   </div>
 
-                  <div id="kc-form-buttons" class="${properties.kcFormGroupClass!}">
-                      <input type="hidden" id="id-hidden-input" name="credentialId" <#if auth.selectedCredential?has_content>value="${auth.selectedCredential}"</#if>/>
-                      <input tabindex="4" class="${properties.kcButtonClass!} ${properties.kcButtonPrimaryClass!} ${properties.kcButtonBlockClass!} ${properties.kcButtonLargeClass!}" name="login" id="kc-login" type="submit" value="${msg("doLogIn")}"/>
-                  </div>
-            </form>
-
+                  <!-- boton de submit? -->
 
         </#if>
         </div>
